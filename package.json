@@ -1,5 +1,5 @@
 {
-  "name": "FOMO Server",
+  "name": "FOMO",
   "version": "1.0.0",
   "description": "Event Management app server",
   "main": "app.js",
