@@ -5,13 +5,13 @@ const cors = require('cors')
 
 const app = express();
 
-// app.use(serveStatic(__dirname + "/dist"));
+app.use(serveStatic(__dirname + "/dist"));
 
-var corsOptions = {
-  origin: 'http://localhost:8080/',
-  optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
-}
-app.use(cors())
+// var corsOptions = {
+//   origin: 'http://localhost:8080/',
+//   optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
+// }
+// app.use(cors())
 
 const mongoose  = require('mongoose');
 mongoose.connect('mongodb://bmayank:mj0405@ds117729.mlab.com:17729/eventtry');
