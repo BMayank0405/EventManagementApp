@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.2.0/workbox-sw.js");
 
 importScripts(
-  "precache-manifest.60144109bbe17651b1eb050c29e4f6f4.js"
+  "precache-manifest.d307e2b3ec6e1e1122f76a1bb9ce815c.js"
 );
 
 workbox.skipWaiting();
@@ -28,6 +28,3 @@ workbox.clientsClaim();
 self.__precacheManifest = [].concat(self.__precacheManifest || []);
 workbox.precaching.suppressWarnings();
 workbox.precaching.precacheAndRoute(self.__precacheManifest, {});
-
-workbox.routing.registerRoute(/https:\/\/fonts.(?:googleapis|gstatic).com\/(.*)/, workbox.strategies.staleWhileRevalidate({ cacheName: "g-apis-cache", plugins: [new workbox.cacheableResponse.Plugin({"statuses":[0,200]}), new workbox.expiration.Plugin({"maxEntries":30,"maxAgeSeconds":720000})] }), 'GET');
-workbox.routing.registerRoute(/\//, workbox.strategies.networkFirst({ networkTimeoutSeconds: 3, cacheName: "main-page-cache", plugins: [new workbox.expiration.Plugin({"maxEntries":100,"maxAgeSeconds":7200}), new workbox.cacheableResponse.Plugin({"statuses":[0,200]})] }), 'GET');
