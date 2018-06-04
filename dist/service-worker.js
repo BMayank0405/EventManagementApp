@@ -30,3 +30,5 @@ workbox.precaching.suppressWarnings();
 workbox.precaching.precacheAndRoute(self.__precacheManifest, {});
 
 workbox.routing.registerRoute(/https:\/\/fonts.(?:googleapis|gstatic).com\/(.*)/, workbox.strategies.staleWhileRevalidate({ cacheName: "g-apis-cache", plugins: [new workbox.cacheableResponse.Plugin({"statuses":[0,200]}), new workbox.expiration.Plugin({"maxEntries":30,"maxAgeSeconds":720000})] }), 'GET');
+workbox.routing.registerRoute(/get-event/, workbox.strategies.networkFirst({ networkTimeoutSeconds: 3, cacheName: "event-cache", plugins: [new workbox.expiration.Plugin({"maxEntries":100,"maxAgeSeconds":7200}), new workbox.cacheableResponse.Plugin({"statuses":[0,200]})] }), 'GET');
+workbox.routing.registerRoute(/all-societies/, workbox.strategies.networkFirst({ networkTimeoutSeconds: 3, cacheName: "societies-cache", plugins: [new workbox.expiration.Plugin({"maxEntries":100,"maxAgeSeconds":7200}), new workbox.cacheableResponse.Plugin({"statuses":[0,200]})] }), 'GET');
