@@ -11,10 +11,10 @@
  * See https://goo.gl/2aRDsh
  */
 
-importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.2.0/workbox-sw.js");
+importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.3.0/workbox-sw.js");
 
 importScripts(
-  "precache-manifest.e3ab64c8de3af2ffa10c097cc2dc3496.js"
+  "/precache-manifest.eaa41405b2c131a1defa83f47fcc5ea3.js"
 );
 
 workbox.skipWaiting();
@@ -29,4 +29,12 @@ self.__precacheManifest = [].concat(self.__precacheManifest || []);
 workbox.precaching.suppressWarnings();
 workbox.precaching.precacheAndRoute(self.__precacheManifest, {});
 
-workbox.routing.registerRoute(/https:\/\/fonts.(?:googleapis|gstatic).com\/(.*)/, workbox.strategies.cacheFirst({ cacheName: "g-apis-cache", plugins: [new workbox.cacheableResponse.Plugin({"statuses":[0,200]}), new workbox.expiration.Plugin({"maxEntries":30,"maxAgeSeconds":2592000})] }), 'GET');
+workbox.routing.registerRoute(/get-event/, workbox.strategies.networkFirst({ networkTimeoutSeconds: 3, cacheName: "event-cache", plugins: [new workbox.expiration.Plugin({"maxEntries":20,"maxAgeSeconds":86400,"purgeOnQuotaError":false})] }), 'GET');
+workbox.routing.registerRoute(/all-societies/, workbox.strategies.networkFirst({ networkTimeoutSeconds: 3, cacheName: "society-cache", plugins: [new workbox.expiration.Plugin({"maxEntries":20,"maxAgeSeconds":86400,"purgeOnQuotaError":false})] }), 'GET');
+workbox.routing.registerRoute(/all-venues/, workbox.strategies.networkFirst({ networkTimeoutSeconds: 3, cacheName: "venue-cache", plugins: [new workbox.expiration.Plugin({"maxEntries":20,"maxAgeSeconds":86400,"purgeOnQuotaError":false})] }), 'GET');
+workbox.routing.registerRoute(/society\/status/, workbox.strategies.networkFirst({ networkTimeoutSeconds: 3, cacheName: "society-status", plugins: [new workbox.expiration.Plugin({"maxEntries":20,"maxAgeSeconds":86400,"purgeOnQuotaError":false})] }), 'GET');
+workbox.routing.registerRoute(/faculty\/pending-events/, workbox.strategies.networkFirst({ networkTimeoutSeconds: 3, cacheName: "-status", plugins: [new workbox.expiration.Plugin({"maxEntries":20,"maxAgeSeconds":86400,"purgeOnQuotaError":false})] }), 'GET');
+workbox.routing.registerRoute(/faculty\/history/, workbox.strategies.networkFirst({ networkTimeoutSeconds: 3, cacheName: "faculty-history", plugins: [new workbox.expiration.Plugin({"maxEntries":20,"maxAgeSeconds":86400,"purgeOnQuotaError":false})] }), 'GET');
+workbox.routing.registerRoute(/admin\/get-head/, workbox.strategies.networkFirst({ networkTimeoutSeconds: 3, cacheName: "admin-head", plugins: [new workbox.expiration.Plugin({"maxEntries":20,"maxAgeSeconds":86400,"purgeOnQuotaError":false})] }), 'GET');
+workbox.routing.registerRoute(/admin\/getAllUsers/, workbox.strategies.networkFirst({ networkTimeoutSeconds: 3, cacheName: "admin-allusers", plugins: [new workbox.expiration.Plugin({"maxEntries":20,"maxAgeSeconds":86400,"purgeOnQuotaError":false})] }), 'GET');
+workbox.routing.registerRoute(/https:\/\/fonts.(?:googleapis|gstatic).com\/(.*)/, workbox.strategies.cacheFirst({ cacheName: "google-api-cache", plugins: [new workbox.expiration.Plugin({"maxEntries":20,"maxAgeSeconds":86400,"purgeOnQuotaError":false})] }), 'GET');
